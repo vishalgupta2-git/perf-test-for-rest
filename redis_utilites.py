@@ -29,22 +29,3 @@ class redis_utils():
         client = redis.Redis(host=self.redisHost, port=self.redisPort, charset="utf-8", decode_responses=True)
         return client.get(key)
         
-    def checkForTasks(self, slaveID):
-        '''
-        This module will look for tasks on redis for current slave and return 1st non executed task
-        '''
-        client = redis.Redis(host=self.redisHost, port=self.redisPort, charset="utf-8", decode_responses=True)
-        key = f'slave_{slaveID}_tasks'
-        print(key)
-        client.set('vish', 'vishal')
-        if client.get('vish') == 'vishal':
-            print("Match")
-        else:
-            print("mismatch")
-        tasks = client.get(key)
-        print(tasks)
-        if tasks is None:
-            print("Invalid Tasks")
-
-# abc=redis_utils()
-# abc.checkForTasks('01')
